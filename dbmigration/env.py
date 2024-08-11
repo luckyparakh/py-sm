@@ -13,7 +13,7 @@ config = context.config
 
 # To overwrite values present in alembic.ini
 config.set_main_option(
-    "sqlalchemy.url",  f"postgresql+psycopg://{settings.database_username}:{settings.database_password}@{settings.database_hostname}/{settings.database_name}")
+    "sqlalchemy.url",  settings.database_url)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
