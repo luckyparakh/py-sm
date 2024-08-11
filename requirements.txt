@@ -1,0 +1,5 @@
+fastapi[all]
+psycopg
+passlib[bcrypt]
+pyjwt
+alembic
