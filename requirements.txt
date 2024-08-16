@@ -3,3 +3,5 @@ psycopg
 passlib[bcrypt]
 pyjwt
 alembic
+gunicorn
+uvloop

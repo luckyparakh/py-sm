@@ -21,6 +21,7 @@ class UserBase(BaseModel):
 class UserResponse(BaseModel):
     email: EmailStr
     created_at: datetime
+    id: int
 
     class config:
         orm_mode = True
@@ -29,6 +30,7 @@ class UserResponse(BaseModel):
 class PostResponse(PostBase):
     created_at: datetime
     user_id: int
+    id: int
     user: UserResponse
 
     class config:
