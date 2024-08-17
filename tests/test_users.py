@@ -8,7 +8,7 @@ def test_root(client):
     response = client.get("/")
     # print(response.json())
     assert response.status_code == 200
-    assert response.json().get("message") == "Hello World!!!"
+    assert response.json().get("message") == "Hello World"
 
 
 def test_create_user(client):
