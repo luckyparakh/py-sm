@@ -4,20 +4,29 @@ on: [push, pull_request]
 
 jobs:
     job1:
-        runs-on: ubuntu-latest
-        steps:
-            - name: pulling git repo
-              uses: actions/checkout@v2
+      environment: 
+        name: testing
+      env:
+        DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+        DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+        SECRET_KEY: ${{secrets.SECRET_KEY}}
+        ALGORITHM: ${{secrets.ALGORITHM}}
+        ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
+        DATABASE_URL: ${{secrets.DATABASE_URL}}
+      runs-on: ubuntu-latest
+      steps:
+          - name: pulling git repo
+            uses: actions/checkout@v2
 
-            - name: Install Python
-              uses: actions/setup-python@v2
-              with:
-                  python-version: '3.9'
-            - name: Update pip
-              run: python -m pip install --upgrade pip
-            - name: Install dependencies
-              run: pip install -r requirements_sanjeev.txt
-            - name: Run tests
-              run: |
-                pip install pytest
-                pytest
+          - name: Install Python
+            uses: actions/setup-python@v2
+            with:
+                python-version: '3.9'
+          - name: Update pip
+            run: python -m pip install --upgrade pip
+          - name: Install dependencies
+            run: pip install -r requirements_sanjeev.txt
+          - name: Run tests
+            run: |
+              pip install pytest
+              pytest
