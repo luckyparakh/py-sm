@@ -5,3 +5,4 @@ pyjwt
 alembic
 gunicorn
 uvloop
+pytest
