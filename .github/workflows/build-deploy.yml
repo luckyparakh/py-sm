@@ -13,6 +13,9 @@ jobs:
         ALGORITHM: ${{secrets.ALGORITHM}}
         ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
         DATABASE_URL: ${{secrets.DATABASE_URL}}
+        DATABASE_NAME: ${{secrets.DATABASE_NAME}}
+        DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
+        DATABASE_PORT: ${{secrets.DATABASE_PORT}}
       services:
         postgres:
           image: postgres
