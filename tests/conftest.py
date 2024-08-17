@@ -81,3 +81,26 @@ def create_posts(auth_client):
         )
         assert resp.status_code == 201
     return len(posts)
+@pytest.fixture
+def test_user2(client):
+    user = {
+        "email": "test2@gmail.com",
+        "password": "password"
+    }
+    response = client.post("/users/", json=user)
+    print(response.json())
+    assert response.status_code == 201
+    new_user = response.json()
+    new_user["password"] = user["password"]
+    return new_user
+
+
+@pytest.fixture
+def token2(test_user2):
+    return create_access_token(data={"user_id": test_user2["id"]})
+
+
+@pytest.fixture
+def auth_client2(client, token2):
+    client.headers["Authorization"] = f"Bearer {token2}"
+    return client

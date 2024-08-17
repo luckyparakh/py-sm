@@ -69,12 +69,12 @@ def update_post(id: int, post: schemas.PostCreate, db: Session = Depends(get_db)
     #                (post.title, post.content, post.publish, id))
     # post_to_update = cursor.fetchone()
     up_q = db.query(models.Posts).filter(models.Posts.id == id)
-    post = up_q.first()
-    if not post:
+    up_post = up_q.first()
+    if not up_post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Post with id: {id} not found")
 
-    if post.user_id != logged_in_user.id:
+    if up_post.user_id != logged_in_user.id:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="You are not allowed to update this post")
     up_q.update(post.model_dump(), synchronize_session=False)
